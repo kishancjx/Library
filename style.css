@@ -1,0 +1,92 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: black;
+    color: white;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 15px;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.show-books-btn {
+    background-color: white;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.show-books-btn:hover {
+    background-color: #f1f1f1;
+}
+
+/* Main Section Styling */
+.main-section {
+    background-image: url('bg2.jpeg'); /* Replace with your actual image path */
+    background-size: cover;
+    background-position: center;
+    height:50vh ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-message h2 {
+    color: white;
+    font-size: 2.5rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+/* Book Section */
+
+.book-section{
+    display: flex;
+    width:100%;
+    align-items: center;
+}
+
+.book-top-section{
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+    align-items:center;
+    padding: 25px;
+    
+}
+
+#addBook{
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+

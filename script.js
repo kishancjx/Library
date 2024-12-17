@@ -63,7 +63,7 @@ form.addEventListener("submit", function (e) {
     const theBook = new BookMaker(
       bookTitleValue,
       bookAuthorValue,
-      bookPagesValue,
+      Number(bookPagesValue),
       bookRead
     );
     console.log(theBook);

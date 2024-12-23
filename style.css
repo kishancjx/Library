@@ -94,11 +94,6 @@ body, html {
 
 
 
-.booksContainer{
-
-    display: flex;
-    
-}
 
 
 dialog {
@@ -123,7 +118,7 @@ dialog::backdrop {
 
 /* Dialog Form Styling */
 .form{
-    font-family: "Poppins",serif;
+  font-family: "Poppins",serif;
 }
 
 .form h1{
@@ -133,20 +128,20 @@ dialog::backdrop {
 
 .form input 
 {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    outline: 0;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  outline: 0;
 }
 
 .inputControl{
-    margin: 20px 2px;
+  margin: 20px 2px;
 }
 
 
 .inputControlPages{
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 
@@ -167,11 +162,11 @@ dialog::backdrop {
 
 
 .buttons{
-    display: flex;
+  display: flex;
     justify-content: space-between;
-}
-
-.button{
+  }
+  
+  .button{
     background-color: #000000;
     font-size: large;
     color:white;
@@ -180,23 +175,23 @@ dialog::backdrop {
     width: 50%;
     margin: 5px;
     padding: 1em;
-}
-
-.button:hover{
+  }
+  
+  .button:hover{
     background-color: #111111;
-}
+  }
 
-
-
-
-/* Toggle Button */
- /* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
+  
+  
+  
+  /* Toggle Button */
+  /* The switch - the box around the slider */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
 /* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
@@ -244,3 +239,74 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 } 
+
+
+
+
+
+
+
+
+
+.booksContainer{
+
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 3vw;
+    
+}
+/* Book Cards */
+
+.book-card{
+  border: 3px solid black;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 4px 4px  4px  black;
+  display: flex;
+  min-width: 20vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins',sans-serif;
+  
+}
+
+.book-title{
+  font-size: 2rem;
+}
+
+.book-author{
+  font-size: 1rem;
+}
+
+.toggle-div{
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+
+}
+.switch{
+  margin: 0 20px 0 0;
+}
+
+.book-status{
+  font-weight: bold;
+  font-size: large;
+}
+
+.delete-btn{
+  width: 70%;
+  height: 40px;
+  background-color: #000000;
+  color: whitesmoke;
+  border: none;
+  border-radius: 10px;
+  font-weight: bolder;
+  font-size: large;
+}
+
+.delete-btn:hover{
+  background-color: #0b161f;
+}

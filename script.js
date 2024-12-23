@@ -1,3 +1,4 @@
+const bookContainer = document.querySelector(".booksContainer");
 const dialogBox = document.querySelector(".dialogBox");
 const addBook = document.querySelector("#addBook");
 const closeBtn = document.querySelector(".dialogBox #close");
@@ -47,6 +48,58 @@ closeBtn.addEventListener("click", () => {
   dialogBox.close();
 });
 
+function displayBooks() {
+  myLibrary.forEach((book,index) => {
+    const bookDiv = document.createElement("div");
+    const bookTitle = document.createElement("h3");
+    const bookAuthor = document.createElement("p");
+    const bookPages = document.createElement("p");
+    const toggleDiv = document.createElement("div");
+    const switchLabel = document.createElement("label");
+    const checkBoxInput = document.createElement("input");
+    const slideSpan = document.createElement("span");
+    const bookStatus = document.createElement("p");
+    const removeBtn = document.createElement("button");
+
+    bookDiv.classList.add("book-card");
+    bookTitle.classList.add("book-title");
+    bookAuthor.classList.add("book-author");
+    bookPages.classList.add("book-pages");
+    toggleDiv.classList.add("toggle-div");
+    switchLabel.classList.add("switch");
+    checkBoxInput.classList.add("read-toggle");
+    slideSpan.classList.add("slider", "round");
+    bookStatus.classList.add("book-status");
+    removeBtn.classList.add("delete-btn");
+
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = `by ${book.author}`;
+    bookPages.textContent = `${book.pages} Pages`;
+    bookStatus.textContent = book.status;
+    removeBtn.textContent = "Remove"; 
+
+    bookDiv.appendChild(bookTitle);
+    bookDiv.appendChild(bookAuthor);
+    bookDiv.appendChild(bookPages);
+    switchLabel.appendChild(checkBoxInput);
+    switchLabel.appendChild(slideSpan);
+    toggleDiv.appendChild(switchLabel);
+    toggleDiv.appendChild(bookStatus);
+    bookDiv.appendChild(toggleDiv);
+    bookDiv.appendChild(removeBtn);
+
+    bookContainer.appendChild(bookDiv);
+
+    removeBtn.addEventListener("click",()=> {
+      myLibrary.splice(index,1);
+      bookDiv.remove();
+
+
+    });
+
+  });
+}
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -77,6 +130,8 @@ form.addEventListener("submit", function (e) {
 
     // Close the Dialog Box
     dialogBox.close();
+
+    displayBooks();
   }
 });
 

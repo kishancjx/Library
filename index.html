@@ -34,7 +34,21 @@
         <button id="addBook">Add a Book</button>
       </div>
 
-      <div class="booksContainer"></div>
+      <div class="booksContainer">
+        <!-- <div class="book-card">
+          <h3 class="book-title">The TempSet</h3>
+          <p class="book-author">by William Shakespear</p>
+          <p class="book-pages">330 Pages</p>
+          <div class="toggle-div">
+            <label class="switch">
+              <input type="checkbox" class="read-toggle" />
+              <span class="slider round"></span>
+            </label>
+            <p class="book-status">Not Read</p>
+          </div>
+          <button class="delete-btn">Remove</button>
+        </div> -->  
+      </div>
     </div>
 
     <dialog class="dialogBox">
@@ -43,19 +57,19 @@
 
         <div class="inputControl">
           <label for="Title" autofocus>Title:</label>
-          <input type="text" id="Title"  />
+          <input type="text" id="Title" />
           <div class="error"></div>
         </div>
 
         <div class="inputControl">
           <label for="author">Author:</label>
-          <input type="text" id="author"  />
+          <input type="text" id="author" />
           <div class="error"></div>
         </div>
 
         <div class="inputControl">
           <label for="pages">Pages:</label>
-          <input type="number" id="pages"  />
+          <input type="number" id="pages" />
           <div class="error"></div>
         </div>
 
@@ -72,7 +86,9 @@
 
         <div class="buttons">
           <button class="submitButton button" type="submit">Submit</button>
-          <button class="closeButton button" type="button" id="close">Close</button>
+          <button class="closeButton button" type="button" id="close">
+            Close
+          </button>
         </div>
       </form>
     </dialog>

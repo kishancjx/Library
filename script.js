@@ -36,8 +36,60 @@ function BookMaker(title, author, pages, status) {
   // };
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(book, index) {
   // code to add book to library
+  const bookDiv = document.createElement("div");
+  const bookTitle = document.createElement("h3");
+  const bookAuthor = document.createElement("p");
+  const bookPages = document.createElement("p");
+  const toggleDiv = document.createElement("div");
+  const switchLabel = document.createElement("label");
+  const checkBoxInput = document.createElement("input");
+  const slideSpan = document.createElement("span");
+  const bookStatus = document.createElement("p");
+  const removeBtn = document.createElement("button");
+
+  bookDiv.classList.add("book-card");
+  bookDiv.dataset.index = index;
+
+  bookTitle.classList.add("book-title");
+  bookAuthor.classList.add("book-author");
+  bookPages.classList.add("book-pages");
+  toggleDiv.classList.add("toggle-div");
+  switchLabel.classList.add("switch");
+  checkBoxInput.classList.add("read-toggle");
+  slideSpan.classList.add("slider", "round");
+  bookStatus.classList.add("book-status");
+  removeBtn.classList.add("delete-btn");
+
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = `by ${book.author}`;
+  bookPages.textContent = `${book.pages} Pages`;
+  bookStatus.textContent = book.status;
+  removeBtn.textContent = "Remove";
+
+  bookDiv.appendChild(bookTitle);
+  bookDiv.appendChild(bookAuthor);
+  bookDiv.appendChild(bookPages);
+  switchLabel.appendChild(checkBoxInput);
+  switchLabel.appendChild(slideSpan);
+  toggleDiv.appendChild(switchLabel);
+  toggleDiv.appendChild(bookStatus);
+  bookDiv.appendChild(toggleDiv);
+  bookDiv.appendChild(removeBtn);
+
+  console.log(book, index);
+
+  removeBtn.addEventListener("click", () => {
+    const index = parseInt(bookDiv.getAttribute("data-index"));
+    console.log(book, index);
+    bookDiv.remove();
+    myLibrary.splice(index, 1);
+
+    updateIndices();
+  });
+
+  bookContainer.appendChild(bookDiv);
 }
 
 addBook.addEventListener("click", () => {
@@ -48,55 +100,68 @@ closeBtn.addEventListener("click", () => {
   dialogBox.close();
 });
 
-function displayBooks() {
-  myLibrary.forEach((book,index) => {
-    const bookDiv = document.createElement("div");
-    const bookTitle = document.createElement("h3");
-    const bookAuthor = document.createElement("p");
-    const bookPages = document.createElement("p");
-    const toggleDiv = document.createElement("div");
-    const switchLabel = document.createElement("label");
-    const checkBoxInput = document.createElement("input");
-    const slideSpan = document.createElement("span");
-    const bookStatus = document.createElement("p");
-    const removeBtn = document.createElement("button");
+// function displayBooks() {
+//   myLibrary.forEach((book, index) => {
+//     const bookDiv = document.createElement("div");
+//     const bookTitle = document.createElement("h3");
+//     const bookAuthor = document.createElement("p");
+//     const bookPages = document.createElement("p");
+//     const toggleDiv = document.createElement("div");
+//     const switchLabel = document.createElement("label");
+//     const checkBoxInput = document.createElement("input");
+//     const slideSpan = document.createElement("span");
+//     const bookStatus = document.createElement("p");
+//     const removeBtn = document.createElement("button");
 
-    bookDiv.classList.add("book-card");
-    bookTitle.classList.add("book-title");
-    bookAuthor.classList.add("book-author");
-    bookPages.classList.add("book-pages");
-    toggleDiv.classList.add("toggle-div");
-    switchLabel.classList.add("switch");
-    checkBoxInput.classList.add("read-toggle");
-    slideSpan.classList.add("slider", "round");
-    bookStatus.classList.add("book-status");
-    removeBtn.classList.add("delete-btn");
+//     bookDiv.classList.add("book-card");
+//     bookDiv.dataset.index = index;
 
-    bookTitle.textContent = book.title;
-    bookAuthor.textContent = `by ${book.author}`;
-    bookPages.textContent = `${book.pages} Pages`;
-    bookStatus.textContent = book.status;
-    removeBtn.textContent = "Remove"; 
+//     bookTitle.classList.add("book-title");
+//     bookAuthor.classList.add("book-author");
+//     bookPages.classList.add("book-pages");
+//     toggleDiv.classList.add("toggle-div");
+//     switchLabel.classList.add("switch");
+//     checkBoxInput.classList.add("read-toggle");
+//     slideSpan.classList.add("slider", "round");
+//     bookStatus.classList.add("book-status");
+//     removeBtn.classList.add("delete-btn");
 
-    bookDiv.appendChild(bookTitle);
-    bookDiv.appendChild(bookAuthor);
-    bookDiv.appendChild(bookPages);
-    switchLabel.appendChild(checkBoxInput);
-    switchLabel.appendChild(slideSpan);
-    toggleDiv.appendChild(switchLabel);
-    toggleDiv.appendChild(bookStatus);
-    bookDiv.appendChild(toggleDiv);
-    bookDiv.appendChild(removeBtn);
+//     bookTitle.textContent = book.title;
+//     bookAuthor.textContent = `by ${book.author}`;
+//     bookPages.textContent = `${book.pages} Pages`;
+//     bookStatus.textContent = book.status;
+//     removeBtn.textContent = "Remove";
 
-    bookContainer.appendChild(bookDiv);
+//     bookDiv.appendChild(bookTitle);
+//     bookDiv.appendChild(bookAuthor);
+//     bookDiv.appendChild(bookPages);
+//     switchLabel.appendChild(checkBoxInput);
+//     switchLabel.appendChild(slideSpan);
+//     toggleDiv.appendChild(switchLabel);
+//     toggleDiv.appendChild(bookStatus);
+//     bookDiv.appendChild(toggleDiv);
+//     bookDiv.appendChild(removeBtn);
 
-    removeBtn.addEventListener("click",()=> {
-      myLibrary.splice(index,1);
-      bookDiv.remove();
+//     console.log(book, index);
 
+//     removeBtn.addEventListener("click", () => {
+//       const index = parseInt(bookDiv.getAttribute("data-index"));
+//       console.log(book, index);
+//       bookDiv.remove();
+//       myLibrary.splice(index, 1);
 
-    });
+//       updateIndices();
+//       //displayBooks();
+//     });
 
+//     bookContainer.appendChild(bookDiv);
+//   });
+// }
+
+function updateIndices() {
+  const bookCards = document.querySelectorAll(".book-card");
+  bookCards.forEach((card, newIndex) => {
+    card.dataset.index = newIndex; // Update the data-index
   });
 }
 
@@ -131,7 +196,12 @@ form.addEventListener("submit", function (e) {
     // Close the Dialog Box
     dialogBox.close();
 
-    displayBooks();
+    // Reseting the Success Green Outline
+    form
+      .querySelectorAll(".inputControl")
+      .forEach((item) => item.classList.remove("success"));
+
+    addBookToLibrary(theBook, myLibrary.length - 1);
   }
 });
 
@@ -170,3 +240,18 @@ function setSuccess(element) {
   inputControl.classList.remove("error");
   inputControl.classList.add("success");
 }
+
+function displayBooks() {
+    bookContainer.innerHTML = ""; 
+
+    myLibrary.forEach((book, index) => {
+        addBookToLibrary(book, index); 
+    });
+}
+
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  displayBooks();
+});
+

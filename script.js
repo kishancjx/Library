@@ -1,3 +1,4 @@
+
 const bookContainer = document.querySelector(".booksContainer");
 const dialogBox = document.querySelector(".dialogBox");
 const addBook = document.querySelector("#addBook");
@@ -36,6 +37,7 @@ function BookMaker(title, author, pages, status) {
   // };
 }
 
+
 function addBookToLibrary(book, index) {
   // code to add book to library
   const bookDiv = document.createElement("div");
@@ -58,6 +60,7 @@ function addBookToLibrary(book, index) {
   toggleDiv.classList.add("toggle-div");
   switchLabel.classList.add("switch");
   checkBoxInput.classList.add("read-toggle");
+  checkBoxInput.type = "checkbox";
   slideSpan.classList.add("slider", "round");
   bookStatus.classList.add("book-status");
   removeBtn.classList.add("delete-btn");
@@ -80,6 +83,23 @@ function addBookToLibrary(book, index) {
 
   console.log(book, index);
 
+  
+
+  
+  // Toggle Button Functionality for every Book 
+  checkBoxInput.checked = book.status === "Read"; 
+  checkBoxInput.addEventListener("change", () => {
+        book.status = checkBoxInput.checked ? "Read" : "Not Read";
+        bookStatus.textContent = book.status;
+    });
+
+  
+
+
+
+
+
+  // Remove Button Functionality
   removeBtn.addEventListener("click", () => {
     const index = parseInt(bookDiv.getAttribute("data-index"));
     console.log(book, index);
@@ -100,63 +120,7 @@ closeBtn.addEventListener("click", () => {
   dialogBox.close();
 });
 
-// function displayBooks() {
-//   myLibrary.forEach((book, index) => {
-//     const bookDiv = document.createElement("div");
-//     const bookTitle = document.createElement("h3");
-//     const bookAuthor = document.createElement("p");
-//     const bookPages = document.createElement("p");
-//     const toggleDiv = document.createElement("div");
-//     const switchLabel = document.createElement("label");
-//     const checkBoxInput = document.createElement("input");
-//     const slideSpan = document.createElement("span");
-//     const bookStatus = document.createElement("p");
-//     const removeBtn = document.createElement("button");
 
-//     bookDiv.classList.add("book-card");
-//     bookDiv.dataset.index = index;
-
-//     bookTitle.classList.add("book-title");
-//     bookAuthor.classList.add("book-author");
-//     bookPages.classList.add("book-pages");
-//     toggleDiv.classList.add("toggle-div");
-//     switchLabel.classList.add("switch");
-//     checkBoxInput.classList.add("read-toggle");
-//     slideSpan.classList.add("slider", "round");
-//     bookStatus.classList.add("book-status");
-//     removeBtn.classList.add("delete-btn");
-
-//     bookTitle.textContent = book.title;
-//     bookAuthor.textContent = `by ${book.author}`;
-//     bookPages.textContent = `${book.pages} Pages`;
-//     bookStatus.textContent = book.status;
-//     removeBtn.textContent = "Remove";
-
-//     bookDiv.appendChild(bookTitle);
-//     bookDiv.appendChild(bookAuthor);
-//     bookDiv.appendChild(bookPages);
-//     switchLabel.appendChild(checkBoxInput);
-//     switchLabel.appendChild(slideSpan);
-//     toggleDiv.appendChild(switchLabel);
-//     toggleDiv.appendChild(bookStatus);
-//     bookDiv.appendChild(toggleDiv);
-//     bookDiv.appendChild(removeBtn);
-
-//     console.log(book, index);
-
-//     removeBtn.addEventListener("click", () => {
-//       const index = parseInt(bookDiv.getAttribute("data-index"));
-//       console.log(book, index);
-//       bookDiv.remove();
-//       myLibrary.splice(index, 1);
-
-//       updateIndices();
-//       //displayBooks();
-//     });
-
-//     bookContainer.appendChild(bookDiv);
-//   });
-// }
 
 function updateIndices() {
   const bookCards = document.querySelectorAll(".book-card");

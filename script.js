@@ -10,6 +10,7 @@ const bookTitle = document.querySelector("#Title");
 const bookAuthor = document.querySelector("#author");
 const bookPages = document.querySelector("#pages");
 
+// This Toggle Button is in the Form
 toggleButton.addEventListener("change", () => {
   toggleButton.checked
     ? (ReadStatus.textContent = "Read")
@@ -17,14 +18,14 @@ toggleButton.addEventListener("change", () => {
 });
 
 const myLibrary = [
-  { title: "The Hobbit", author: "J.R.R. Tolkien", pages: 100, status: "Read" },
-  { title: "1984", author: "George Orwell", pages: 200, status: "Not Read" },
-  {
-    title: "To Kill a Mockingbird",
-    author: "Harper Lee",
-    pages: 100,
-    status: "Read",
-  },
+  // { title: "The Hobbit", author: "J.R.R. Tolkien", pages: 100, status: "Read" },
+  // { title: "1984", author: "George Orwell", pages: 200, status: "Not Read" },
+  // {
+  //   title: "To Kill a Mockingbird",
+  //   author: "Harper Lee",
+  //   pages: 100,
+  //   status: "Read",
+  // },
 ];
 
 function BookMaker(title, author, pages, status) {
@@ -32,10 +33,14 @@ function BookMaker(title, author, pages, status) {
   this.author = author;
   this.pages = pages;
   this.status = status;
-  // this.info = () => {
-  //   return `${this.title} by ${this.author} , ${this.pages} , ${this.status}`;
-  // };
+ 
 }
+
+
+BookMaker.prototype.toggleReadStatus = function () {
+    this.status = this.status === "Read" ? "Not Read" : "Read";
+};
+
 
 
 function addBookToLibrary(book, index) {
@@ -89,7 +94,8 @@ function addBookToLibrary(book, index) {
   // Toggle Button Functionality for every Book 
   checkBoxInput.checked = book.status === "Read"; 
   checkBoxInput.addEventListener("change", () => {
-        book.status = checkBoxInput.checked ? "Read" : "Not Read";
+        book.toggleReadStatus();
+        // book.status = checkBoxInput.checked ? "Read" : "Not Read";
         bookStatus.textContent = book.status;
     });
 
